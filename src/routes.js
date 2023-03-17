@@ -19,13 +19,19 @@ export const routes = [
     path: buildRoutePath("/tasks"),
     handler: (req, res) => {
       const { title, description, completed_at, created_at, updated_at } = req.body;
+      const data = new Date();
+
+      const dia = String(data.getDate()).padStart(2, 0);
+      const mes = String(data.getMonth() + 1).padStart(2, 0);
+      const ano = data.getFullYear();
+      const dataAtual = `${dia}/${mes}/${ano}`;
 
       const task = {
         id: randomUUID(),
         title,
         description,
         completed_at: null,
-        created_at,
+        created_at: dataAtual,
         updated_at: null,
       };
 
